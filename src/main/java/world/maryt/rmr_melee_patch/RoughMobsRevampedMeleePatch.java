@@ -1,4 +1,4 @@
-package world.maryt.roughmobsrevamped_melee_patch;
+package world.maryt.rmr_melee_patch;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

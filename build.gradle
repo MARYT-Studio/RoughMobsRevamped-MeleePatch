@@ -144,11 +144,6 @@ dependencies {
         testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
-    // Example of deobfuscating a dependency
-    implementation rfg.deobf('curse.maven:rough-mobs-revamped-360795:3634226')
-
-    // Debug tools
-    runtimeOnly rfg.deobf('curse.maven:torohealth-damage-indicators-245733:2483817')
 }
 
 apply from: 'gradle/scripts/dependencies.gradle'

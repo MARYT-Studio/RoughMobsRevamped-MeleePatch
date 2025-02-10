@@ -1,4 +1,4 @@
-package world.maryt.roughmobsrevamped_melee_patch;
+package world.maryt.rmr_melee_patch;
 
 import zone.rong.mixinbooter.ILateMixinLoader;
 
@@ -10,6 +10,6 @@ public class MixinInit implements ILateMixinLoader {
 
     @Override
     public List<String> getMixinConfigs() {
-        return Collections.singletonList("mixins.roughmobsrevamped_melee_patch.json");
+        return Collections.singletonList("mixins.rmr_melee_patch.json");
     }
 }

@@ -1,4 +1,4 @@
-package world.maryt.roughmobsrevamped_melee_patch.mixins;
+package world.maryt.rmr_melee_patch.mixins;
 import com.p1ut0nium.roughmobsrevamped.config.RoughConfig;
 import com.p1ut0nium.roughmobsrevamped.features.BlazeFeatures;
 import org.spongepowered.asm.mixin.Mixin;
