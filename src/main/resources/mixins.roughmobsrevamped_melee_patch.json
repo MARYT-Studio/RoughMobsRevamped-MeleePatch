@@ -1,0 +1,13 @@
+{
+	"package": "world.maryt.roughmobsrevamped_melee_patch.mixins",
+	"required": true,
+	"refmap": "mixins.roughmobsrevamped_melee_patch.refmap.json",
+	"target": "@env(DEFAULT)",
+	"minVersion": "0.8.5",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"MixinBlazeFeatures"
+	],
+	"server": [],
+	"client": []
+}
