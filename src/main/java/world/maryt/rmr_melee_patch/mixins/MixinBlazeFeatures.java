@@ -31,7 +31,8 @@ public abstract class MixinBlazeFeatures {
 
     @Unique
     boolean rMR_MeleePatch$isWithinFeatureRange(Entity entityA, Entity entityB) {
-        return (rMR_MeleePatch$blazeFeatureRange > 0) && entityA.getDistance(entityB) <= rMR_MeleePatch$blazeFeatureRange;
+        if (rMR_MeleePatch$blazeFeatureRange <= 0.0f) return true;
+        return entityA.getDistance(entityB) <= rMR_MeleePatch$blazeFeatureRange;
     }
 
     @Inject(
@@ -49,7 +50,7 @@ public abstract class MixinBlazeFeatures {
                 "FeatureRange",
                 1.0f,
                 -1.0f,
-                16.0f,
+                1024.0f,
                 "Blaze only affect targets within this radius with its features. Value not greater than 0 disables range check.");
     }
 
