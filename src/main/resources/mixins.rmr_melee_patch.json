@@ -1,13 +1,14 @@
 {
-	"package": "world.maryt.rmr_melee_patch.mixins",
-	"required": true,
-	"refmap": "mixins.rmr_melee_patch.refmap.json",
-	"target": "@env(DEFAULT)",
-	"minVersion": "0.8.5",
-	"compatibilityLevel": "JAVA_8",
-	"mixins": [
-		"MixinBlazeFeatures"
-	],
-	"server": [],
-	"client": []
+  "package" : "world.maryt.rmr_melee_patch.mixins",
+  "required" : true,
+  "refmap" : "mixins.rmr_melee_patch.refmap.json",
+  "target" : "@env(DEFAULT)",
+  "minVersion" : "0.8.5",
+  "compatibilityLevel" : "JAVA_8",
+  "mixins" : [
+    "MixinBlazeFeatures",
+    "MixinWitherFeatures"
+  ],
+  "server" : [],
+  "client": []
 }

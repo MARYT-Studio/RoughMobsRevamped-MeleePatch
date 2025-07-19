@@ -1,6 +1,6 @@
 package world.maryt.rmr_melee_patch.mixins;
 import com.p1ut0nium.roughmobsrevamped.config.RoughConfig;
-import com.p1ut0nium.roughmobsrevamped.features.BlazeFeatures;
+import com.p1ut0nium.roughmobsrevamped.features.WitherFeatures;
 import com.p1ut0nium.roughmobsrevamped.misc.FeatureHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,23 +16,21 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
-@Mixin(value = BlazeFeatures.class, remap = false)
-public abstract class MixinBlazeFeatures {
+@Mixin(value = WitherFeatures.class, remap = false)
+public abstract class MixinWitherFeatures {
 
     @Shadow
     private boolean pushAttackersAway;
     @Shadow
-    private boolean flameTouch;
-    @Shadow
-    private float pushStrength;
+    private boolean enableKnockBackDamage;
 
     @Unique
-    float rMR_MeleePatch$blazeFeatureRange;
+    float rMR_MeleePatch$witherFeatureRange;
 
     @Unique
     boolean rMR_MeleePatch$isWithinFeatureRange(Entity entityA, Entity entityB) {
-        if (rMR_MeleePatch$blazeFeatureRange <= 0.0f) return true;
-        return entityA.getDistance(entityB) <= rMR_MeleePatch$blazeFeatureRange;
+        if (rMR_MeleePatch$witherFeatureRange <= 0.0f) return true;
+        return entityA.getDistance(entityB) <= rMR_MeleePatch$witherFeatureRange;
     }
 
     @Inject(
@@ -45,13 +43,13 @@ public abstract class MixinBlazeFeatures {
             )
     )
     private void inject_initConfig(CallbackInfo ci) {
-        rMR_MeleePatch$blazeFeatureRange = RoughConfig.getFloat(
-                ((BlazeFeatures)(Object)this).name,
+        rMR_MeleePatch$witherFeatureRange = RoughConfig.getFloat(
+                ((WitherFeatures)(Object)this).name,
                 "FeatureRange",
                 1.0f,
                 -1.0f,
                 1024.0f,
-                "Blaze only affect targets within this radius with its features. Value not greater than 0 disables range check.");
+                "Wither only affect targets within this radius with its features. Value not greater than 0 disables range check.");
     }
 
     /**
@@ -65,12 +63,11 @@ public abstract class MixinBlazeFeatures {
                 attacker == immediateAttacker &&
                 rMR_MeleePatch$isWithinFeatureRange(target, attacker)) {
             FeatureHelper.knockback(target, (EntityLivingBase)attacker, 1.0F, 0.05F);
-            attacker.attackEntityFrom(DamageSource.GENERIC, this.pushStrength);
-            if (this.flameTouch) {
-                attacker.setFire(8);
+            if (this.enableKnockBackDamage) {
+                attacker.attackEntityFrom(DamageSource.GENERIC, 4.0F);
             }
 
-            FeatureHelper.playSound(target, SoundEvents.BLOCK_FIRE_EXTINGUISH, 0.7F, 1.0F);
+            FeatureHelper.playSound(target, SoundEvents.ENTITY_WITHER_BREAK_BLOCK, 0.7F, 1.0F);
         }
     }
 }
